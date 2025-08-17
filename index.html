@@ -1,24 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RestoPOS - Modern Restaurant Point of Sale</title>
-    <meta name="description" content="A beautiful, responsive POS dashboard for restaurants with intuitive menu management, cart functionality, and seamless ordering experience." />
-    <meta name="author" content="RestoPOS" />
+    <meta name="description" content="A beautiful, responsive POS dashboard for restaurants with intuitive menu management, cart functionality, and seamless ordering experience.">
+    
+    <!-- 
+    HOW TO RUN:
+    1. Open this index.html file in any modern web browser
+    2. No server required - everything runs locally
+    
+    HOW TO CUSTOMIZE:
+    - Edit product data in script.js (PRODUCTS array)
+    - Modify colors and styling in style.css (CSS variables at top)
+    - Adjust layout and behavior in script.js
+    -->
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Accessibility: Screen reader announcements for cart updates -->
+    <div id="cartAriaLive" aria-live="polite" class="sr-only"></div>
+    
+    <!-- Main Layout Container -->
+    <div class="app-container">
+        
+        <!-- Left Sidebar Navigation -->
+        <aside id="sidebar" class="sidebar">
+            <!-- Logo Area -->
+            <div class="sidebar-logo">
+                <div class="logo-icon">🍽️</div>
+            </div>
+            
+            <!-- Navigation Icons -->
+            <nav class="sidebar-nav" role="navigation" aria-label="Main navigation">
+                <button class="nav-item active" aria-label="Dashboard" data-nav="dashboard">
+                    <span class="nav-icon">📊</span>
+                </button>
+                <button class="nav-item" aria-label="Menu" data-nav="menu">
+                    <span class="nav-icon">📋</span>
+                </button>
+                <button class="nav-item" aria-label="Orders" data-nav="orders">
+                    <span class="nav-icon">🧾</span>
+                </button>
+                <button class="nav-item" aria-label="Analytics" data-nav="analytics">
+                    <span class="nav-icon">📈</span>
+                </button>
+                <button class="nav-item" aria-label="Settings" data-nav="settings">
+                    <span class="nav-icon">⚙️</span>
+                </button>
+            </nav>
+        </aside>
 
-    <meta property="og:title" content="RestoPOS - Modern Restaurant Point of Sale" />
-    <meta property="og:description" content="A beautiful, responsive POS dashboard for restaurants with intuitive menu management, cart functionality, and seamless ordering experience." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        <!-- Main Content Area -->
+        <div class="main-content">
+            
+            <!-- Top Bar -->
+            <header id="topbar" class="topbar">
+                <!-- Search Area -->
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Search Your Menu Here"
+                            aria-label="Search menu items"
+                            autocomplete="off"
+                        >
+                    </div>
+                </div>
+                
+                <!-- User Area -->
+                <div class="user-area">
+                    <!-- Language Flags (placeholder) -->
+                    <div class="language-flags">
+                        <span>🇺🇸</span>
+                        <span>🇪🇸</span>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <button class="notification-btn" aria-label="Notifications">
+                        <span class="notification-icon">🔔</span>
+                    </button>
+                    
+                    <!-- User Profile -->
+                    <div class="user-profile">
+                        <div class="user-avatar">👤</div>
+                        <span class="user-name">John Doe</span>
+                    </div>
+                </div>
+            </header>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+            <!-- Main Grid Layout -->
+            <div class="main-grid">
+                
+                <!-- Products Section -->
+                <section id="products" class="products-section">
+                    
+                    <!-- Category Tabs -->
+                    <div id="categoryTabs" class="category-tabs" role="tablist" aria-label="Food categories">
+                        <!-- Categories will be dynamically populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Section Title -->
+                    <h2 id="sectionTitle" class="section-title">Lunch Menu</h2>
+                    
+                    <!-- Product Grid -->
+                    <div id="productGrid" class="product-grid">
+                        <!-- Products will be dynamically populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Empty State (hidden by default) -->
+                    <div id="emptyState" class="empty-state" style="display: none;">
+                        <div class="empty-icon">🔍</div>
+                        <h3>No items found</h3>
+                        <p>Try adjusting your search or browse other categories</p>
+                    </div>
+                    
+                </section>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+                <!-- Cart Aside -->
+                <aside id="cart" class="cart-aside">
+                    <div class="cart-header">
+                        <h3>Current Order</h3>
+                        <span id="cartItemCount" class="cart-count">0 items</span>
+                    </div>
+                    
+                    <!-- Cart Items -->
+                    <div id="cartItems" class="cart-items">
+                        <!-- Cart items will be dynamically populated -->
+                        <div id="emptyCart" class="empty-cart">
+                            <div class="empty-cart-icon">🛒</div>
+                            <p>Your cart is empty</p>
+                            <small>Add some delicious items from the menu</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Cart Summary -->
+                    <div id="summary" class="cart-summary">
+                        <div class="summary-row">
+                            <span>Sub Total:</span>
+                            <span id="subTotal" data-testid="subtotal">$0.0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax (10%):</span>
+                            <span id="tax" data-testid="tax">$0.0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Payment:</span>
+                            <span id="total" data-testid="total">$0.0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Methods -->
+                    <div id="paymentMethods" class="payment-methods">
+                        <h4>Payment Method</h4>
+                        <div class="payment-options" role="radiogroup" aria-label="Payment method">
+                            <button class="payment-option active" data-method="credit" data-testid="payment-credit">
+                                <span class="payment-icon">💳</span>
+                                <span>Credit Card</span>
+                            </button>
+                            <button class="payment-option" data-method="paylater" data-testid="payment-paylater">
+                                <span class="payment-icon">⏳</span>
+                                <span>Pay Later</span>
+                            </button>
+                            <button class="payment-option" data-method="cash" data-testid="payment-cash">
+                                <span class="payment-icon">💵</span>
+                                <span>Cash</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Place Order Button -->
+                    <button id="placeOrderBtn" class="place-order-btn" data-testid="place-order" disabled>
+                        Place An Order
+                    </button>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Cart Button (visible only on mobile) -->
+    <button id="openCartBtn" class="mobile-cart-btn" aria-label="View cart">
+        <span class="cart-icon">🛒</span>
+        <span class="mobile-cart-text">View Cart</span>
+        <span id="mobileCartCount" class="mobile-cart-count">0</span>
+    </button>
+
+    <!-- Mobile Cart Overlay -->
+    <div id="cartPanel" class="cart-panel">
+        <div class="cart-panel-backdrop"></div>
+        <div class="cart-panel-content">
+            <!-- Cart Header -->
+            <div class="cart-panel-header">
+                <h3>Current Order</h3>
+                <button id="closeCartBtn" class="close-cart-btn" aria-label="Close cart">✕</button>
+            </div>
+            
+            <!-- Mobile cart content will mirror desktop cart -->
+            <div class="cart-panel-body">
+                <div id="mobileCartItems" class="cart-items">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <div id="mobileSummary" class="cart-summary">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <div id="mobilePaymentMethods" class="payment-methods">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <button id="mobilePlaceOrderBtn" class="place-order-btn" disabled>
+                    Place An Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>
