@@ -222,13 +222,15 @@ body {
 }
 
 /* =================================
-   MAIN CONTENT
+   MAIN GRID
    ================================= */
-.main-content {
+.main-grid {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 140px); /* Account for navbar + cart icon row */
+  display: grid;
+  grid-template-columns: 1fr var(--cart-width);
+  gap: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  overflow: hidden;
 }
 
 .search-container {
@@ -288,18 +290,6 @@ body {
 .user-name {
   font-weight: 500;
   color: var(--color-neutral-700);
-}
-
-/* =================================
-   MAIN GRID
-   ================================= */
-.main-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr var(--cart-width);
-  gap: var(--spacing-xl);
-  padding: var(--spacing-xl);
-  overflow: hidden;
 }
 
 /* =================================
@@ -378,7 +368,7 @@ body {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   overflow-y: auto;
   padding-right: var(--spacing-sm);
 }
@@ -539,7 +529,7 @@ body {
   display: flex;
   flex-direction: column;
   height: fit-content;
-  max-height: calc(100vh - var(--topbar-height) - 2 * var(--spacing-xl));
+  max-height: calc(100vh - 140px - 2 * var(--spacing-xl));
   position: sticky;
   top: var(--spacing-xl);
 }

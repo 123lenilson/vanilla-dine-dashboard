@@ -83,95 +83,91 @@
             </div>
         </div>
 
-        <!-- Main Content Area -->
-        <div class="main-content">
-
-            <!-- Main Grid Layout -->
-            <div class="main-grid">
+        <!-- Main Grid Layout -->
+        <div class="main-grid">
+            
+            <!-- Products Section -->
+            <section id="products" class="products-section">
                 
-                <!-- Products Section -->
-                <section id="products" class="products-section">
-                    
-                    <!-- Category Tabs -->
-                    <div id="categoryTabs" class="category-tabs" role="tablist" aria-label="Food categories">
-                        <!-- Categories will be dynamically populated by JavaScript -->
-                    </div>
-                    
-                    <!-- Section Title -->
-                    <h2 id="sectionTitle" class="section-title">Lunch Menu</h2>
-                    
-                    <!-- Product Grid -->
-                    <div id="productGrid" class="product-grid">
-                        <!-- Products will be dynamically populated by JavaScript -->
-                    </div>
-                    
-                    <!-- Empty State (hidden by default) -->
-                    <div id="emptyState" class="empty-state" style="display: none;">
-                        <div class="empty-icon">🔍</div>
-                        <h3>No items found</h3>
-                        <p>Try adjusting your search or browse other categories</p>
-                    </div>
-                    
-                </section>
+                <!-- Category Tabs -->
+                <div id="categoryTabs" class="category-tabs" role="tablist" aria-label="Food categories">
+                    <!-- Categories will be dynamically populated by JavaScript -->
+                </div>
+                
+                <!-- Section Title -->
+                <h2 id="sectionTitle" class="section-title">Lunch Menu</h2>
+                
+                <!-- Product Grid -->
+                <div id="productGrid" class="product-grid">
+                    <!-- Products will be dynamically populated by JavaScript -->
+                </div>
+                
+                <!-- Empty State (hidden by default) -->
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <div class="empty-icon">🔍</div>
+                    <h3>No items found</h3>
+                    <p>Try adjusting your search or browse other categories</p>
+                </div>
+                
+            </section>
 
-                <!-- Cart Aside -->
-                <aside id="cart" class="cart-aside">
-                    <div class="cart-header">
-                        <h3>Current Order</h3>
-                        <span id="cartItemCount" class="cart-count">0 items</span>
+            <!-- Cart Aside -->
+            <aside id="cart" class="cart-aside">
+                <div class="cart-header">
+                    <h3>Current Order</h3>
+                    <span id="cartItemCount" class="cart-count">0 items</span>
+                </div>
+                
+                <!-- Cart Items -->
+                <div id="cartItems" class="cart-items">
+                    <!-- Cart items will be dynamically populated -->
+                    <div id="emptyCart" class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <p>Your cart is empty</p>
+                        <small>Add some delicious items from the menu</small>
                     </div>
-                    
-                    <!-- Cart Items -->
-                    <div id="cartItems" class="cart-items">
-                        <!-- Cart items will be dynamically populated -->
-                        <div id="emptyCart" class="empty-cart">
-                            <div class="empty-cart-icon">🛒</div>
-                            <p>Your cart is empty</p>
-                            <small>Add some delicious items from the menu</small>
-                        </div>
+                </div>
+                
+                <!-- Cart Summary -->
+                <div id="summary" class="cart-summary">
+                    <div class="summary-row">
+                        <span>Sub Total:</span>
+                        <span id="subTotal" data-testid="subtotal">$0.0</span>
                     </div>
-                    
-                    <!-- Cart Summary -->
-                    <div id="summary" class="cart-summary">
-                        <div class="summary-row">
-                            <span>Sub Total:</span>
-                            <span id="subTotal" data-testid="subtotal">$0.0</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Tax (10%):</span>
-                            <span id="tax" data-testid="tax">$0.0</span>
-                        </div>
-                        <div class="summary-row total">
-                            <span>Total Payment:</span>
-                            <span id="total" data-testid="total">$0.0</span>
-                        </div>
+                    <div class="summary-row">
+                        <span>Tax (10%):</span>
+                        <span id="tax" data-testid="tax">$0.0</span>
                     </div>
-                    
-                    <!-- Payment Methods -->
-                    <div id="paymentMethods" class="payment-methods">
-                        <h4>Payment Method</h4>
-                        <div class="payment-options" role="radiogroup" aria-label="Payment method">
-                            <button class="payment-option active" data-method="credit" data-testid="payment-credit">
-                                <span class="payment-icon">💳</span>
-                                <span>Credit Card</span>
-                            </button>
-                            <button class="payment-option" data-method="paylater" data-testid="payment-paylater">
-                                <span class="payment-icon">⏳</span>
-                                <span>Pay Later</span>
-                            </button>
-                            <button class="payment-option" data-method="cash" data-testid="payment-cash">
-                                <span class="payment-icon">💵</span>
-                                <span>Cash</span>
-                            </button>
-                        </div>
+                    <div class="summary-row total">
+                        <span>Total Payment:</span>
+                        <span id="total" data-testid="total">$0.0</span>
                     </div>
-                    
-                    <!-- Place Order Button -->
-                    <button id="placeOrderBtn" class="place-order-btn" data-testid="place-order" disabled>
-                        Place An Order
-                    </button>
-                </aside>
-            </div>
+                </div>
+                
+                <!-- Payment Methods -->
+                <div id="paymentMethods" class="payment-methods">
+                    <h4>Payment Method</h4>
+                    <div class="payment-options" role="radiogroup" aria-label="Payment method">
+                        <button class="payment-option active" data-method="credit" data-testid="payment-credit">
+                            <span class="payment-icon">💳</span>
+                            <span>Credit Card</span>
+                        </button>
+                        <button class="payment-option" data-method="paylater" data-testid="payment-paylater">
+                            <span class="payment-icon">⏳</span>
+                            <span>Pay Later</span>
+                        </button>
+                        <button class="payment-option" data-method="cash" data-testid="payment-cash">
+                            <span class="payment-icon">💵</span>
+                            <span>Cash</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Place Order Button -->
+                <button id="placeOrderBtn" class="place-order-btn" data-testid="place-order" disabled>
+                    Place An Order
+                </button>
+            </aside>
         </div>
     </div>
 
