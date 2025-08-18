@@ -26,72 +26,65 @@
     <!-- Main Layout Container -->
     <div class="app-container">
         
-        <!-- Left Sidebar Navigation -->
-        <aside id="sidebar" class="sidebar">
-            <!-- Logo Area -->
-            <div class="sidebar-logo">
-                <div class="logo-icon">🍽️</div>
-            </div>
-            
-            <!-- Navigation Icons -->
-            <nav class="sidebar-nav" role="navigation" aria-label="Main navigation">
-                <button class="nav-item active" aria-label="Dashboard" data-nav="dashboard">
-                    <span class="nav-icon">📊</span>
+        <!-- Top Navigation Bar -->
+        <header id="navbar" class="navbar">
+            <!-- Left Navigation -->
+            <nav class="navbar-left" role="navigation" aria-label="Main navigation">
+                <button class="nav-item active" aria-label="Home" data-nav="home">
+                    <span class="nav-text">Home</span>
                 </button>
-                <button class="nav-item" aria-label="Menu" data-nav="menu">
-                    <span class="nav-icon">📋</span>
+                <button class="nav-item" aria-label="Order List" data-nav="orders">
+                    <span class="nav-text">Order List</span>
                 </button>
-                <button class="nav-item" aria-label="Orders" data-nav="orders">
-                    <span class="nav-icon">🧾</span>
+                <button class="nav-item" aria-label="Story" data-nav="story">
+                    <span class="nav-text">Story</span>
                 </button>
-                <button class="nav-item" aria-label="Analytics" data-nav="analytics">
-                    <span class="nav-icon">📈</span>
+                <button class="nav-item" aria-label="Report" data-nav="report">
+                    <span class="nav-text">Report</span>
                 </button>
                 <button class="nav-item" aria-label="Settings" data-nav="settings">
-                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
                 </button>
             </nav>
-        </aside>
+            
+            <!-- Right User Area -->
+            <div class="navbar-right">
+                <div class="datetime-info">
+                    <span id="currentDate" class="date-display">Dec 19, 2024</span>
+                    <span id="currentTime" class="time-display">2:30 PM</span>
+                </div>
+                
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="user-avatar">👤</div>
+                    <span class="user-name">John Doe</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Shopping Cart Icon Row -->
+        <div class="cart-icon-row">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search Your Menu Here"
+                        aria-label="Search menu items"
+                        autocomplete="off"
+                    >
+                </div>
+            </div>
+            <div class="cart-icon-container">
+                <button class="shopping-cart-icon" aria-label="Shopping Cart">
+                    <span class="cart-icon">🛒</span>
+                </button>
+            </div>
+        </div>
 
         <!-- Main Content Area -->
         <div class="main-content">
-            
-            <!-- Top Bar -->
-            <header id="topbar" class="topbar">
-                <!-- Search Area -->
-                <div class="search-container">
-                    <div class="search-wrapper">
-                        <span class="search-icon">🔍</span>
-                        <input 
-                            type="text" 
-                            id="searchInput" 
-                            placeholder="Search Your Menu Here"
-                            aria-label="Search menu items"
-                            autocomplete="off"
-                        >
-                    </div>
-                </div>
-                
-                <!-- User Area -->
-                <div class="user-area">
-                    <!-- Language Flags (placeholder) -->
-                    <div class="language-flags">
-                        <span>🇺🇸</span>
-                        <span>🇪🇸</span>
-                    </div>
-                    
-                    <!-- Notifications -->
-                    <button class="notification-btn" aria-label="Notifications">
-                        <span class="notification-icon">🔔</span>
-                    </button>
-                    
-                    <!-- User Profile -->
-                    <div class="user-profile">
-                        <div class="user-avatar">👤</div>
-                        <span class="user-name">John Doe</span>
-                    </div>
-                </div>
-            </header>
 
             <!-- Main Grid Layout -->
             <div class="main-grid">
